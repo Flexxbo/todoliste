@@ -1,0 +1,92 @@
+$myTextColor: #333;
+$lightColor: #dadada;
+$mediumColor: #d0ffff;
+$darkColor: #333;
+
+/*
+$myTextColor: #dadada;
+$lightColor: #333;
+$mediumColor: #d0ffff;
+$darkColor: #dadada;
+*/
+
+/* CSS - Reset*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: $myTextColor;
+}
+
+/* General */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Utilities */
+.container {
+  background: $lightColor;
+  margin: 5vh auto;
+  text-align: center;
+  max-width: 750px;
+  //border: 2px solid $darkColor;
+  border-radius: 10px;
+  min-height: 50vh;
+  padding: 25px;
+
+  h1 {
+    margin: 10px 0;
+  }
+}
+
+.todoinput {
+  box-sizing: border-box;
+  form {
+    //border: 2px yellow solid;
+    //margin: 15px;
+    padding: 20px 10px;
+    width: 100%;
+    p {
+      font-size: 1.4rem;
+    }
+    input {
+      color: $myTextColor;
+      //background: $lightColor;
+      margin: 5px 0;
+      padding: 10px;
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+}
+
+.todoliste {
+  background-color: #fff;
+  min-height: 80px;
+  width: 100%;
+  //border: red 2px solid;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Todo Items*/
+.todoitem {
+  //border: red 1px solid;
+  background: $lightColor;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  align-items: center;
+
+  button {
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 5px;
+    color: $myTextColor;
+    background: $lightColor;
+  }
+}

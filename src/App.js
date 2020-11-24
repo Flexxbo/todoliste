@@ -1,13 +1,36 @@
 //import "./App.css";
-import Todoliste from "./components/TodoListe";
-import Todoinput from "./components/TodoInput";
+import TodoItem from "./components/TodoItem";
 
 function App() {
   return (
     <div className='App'>
-      <h1>Hello</h1>
-      <Todoliste />
-      <Todoinput />
+      <div className='container'>
+        <h1>Todo Liste</h1>
+        <div className='todoinput'>
+          <form>
+            <p>Neues ToDo hinzufügen:</p>
+            <input type='text' /> <br></br>
+            <input type='submit' value='Hinzufügen' />
+          </form>
+        </div>
+        <div className='todoliste'>
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+          <TodoItem />
+        </div>
+      </div>
     </div>
   );
 }

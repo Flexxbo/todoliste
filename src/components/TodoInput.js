@@ -4,8 +4,12 @@ import TodoItem from "./TodoItem";
 function TodoInput() {
   return (
     <div>
-      <h1>TODOINPUT</h1>
-      <TodoItem />
+      <form>
+        <p>Neues ToDo hinzufügen:</p>
+        <input type='text' /> <br></br>
+        <input type='submit' value='Hinzufügen' />
+      </form>
+      
     </div>
   );
 }
