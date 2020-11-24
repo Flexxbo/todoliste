@@ -25,7 +25,7 @@ function App() {
   setTodos([...todos, {title:todotitle, done:false, id: Math.random()*1000}])
   /* reset state of input field */
   setTodotitle("")
-  console.log(todos)
+  console.log(todos.length)
   }
 
 
@@ -45,11 +45,11 @@ function App() {
           </div>
         </div>
         <div className='todoliste'>
-          {/* {todos.map((todoitem) => {
+          { todos.length > 0 ? todos.map((todoitem) => {
               console.log(todoitem.id);
               console.log(todoitem);
               return <TodoItem key={todoitem.id} title={todoitem.title} />;
-            })} */}
+            }) : <p>Nix zu tun?</p> }
         </div>
       </div>
     </div>
