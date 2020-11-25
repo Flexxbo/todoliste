@@ -2,20 +2,32 @@ import React from "react";
 
 function TodoItem({ title, todoitem, todos, setTodos }) {
   /*const { title, id } = todo;*/
-  console.log("das ist der consolellog", title);
+  //console.log(todoitem.id);
 
 /* Handle the ToDos */
 /* Delete a Todo */
+/* filter array creates array that contains all elements that match the condition */
 const deleteHandler = ()=>{
   setTodos(todos.filter((filterelement) => filterelement.id !== todoitem.id))
-  console.log("something nice")
+}
+
+const doneHandler = () =>{
+  setTodos(todos.map(item => {
+    if (item.id === todoitem.id){
+      console.log("match")
+      return{
+        ...item, done: !item.done
+      }
+    }
+    return item
+  }))
 }
 
   return (
     <div className='todoitem'>
-      <p>{title}</p>
+      <p className={`item-title  ${todoitem.done ? "done" : ""}` }>{title}</p>
       <div>
-        <button>Done</button>
+        <button onClick={doneHandler}>Done</button>
         <button>Edit</button>
         <button onClick={deleteHandler}>Delete</button>
       </div>

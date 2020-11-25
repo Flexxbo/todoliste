@@ -15,18 +15,18 @@ function App() {
 
   /* Put input into todotitle-state  */
   const inputChangeHandler = (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setTodotitle(e.target.value);
   }
 
   /* Push new todo into todos array */
   const submitHandler = (e) => {
     e.preventDefault();
-  console.log("nothing reloading if not in form tag")
+  //console.log("nothing reloading if not in form tag")
   setTodos([...todos, {title:todotitle, done:false, id: Math.random()*1000}])
   /* Reset state of input field */
   setTodotitle("")
-  console.log(todos.length)
+  //console.log(todos.length)
   }
 
 
@@ -52,8 +52,8 @@ function App() {
         {/* Map Array to create several todo items - Check if there is items in the array first with ternary */}
         <div className='todoliste'>
           { todos.length > 0 ? todos.map((todoitem) => {
-              console.log(todoitem.id);
-              console.log(todoitem);
+              //console.log(todoitem.id);
+              //console.log(todoitem);
               return <TodoItem key={todoitem.id} title={todoitem.title} todoitem={todoitem} todos={todos} setTodos={setTodos} />;
             }) : <p>Nix zu tun?</p> }
         </div>
