@@ -62,7 +62,7 @@ function App() {
             <p>Neues ToDo hinzufügen:</p>
             {/* Set value to todotitle to "reset" the input field to be blank */}
             <input value={todotitle} onChange={inputChangeHandler} type='text' />
-            {edit === false ? <button onClick={submitHandler}>
+            {edit === false ? <button onClick={todotitle !== "" ? submitHandler : (e)=>{e.preventDefault(); alert("Nix zu tun??? Schreib etwas!")}}>
               Hinzufügen
             </button> : <button onClick={editItem}>
               Ändern
