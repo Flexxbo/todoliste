@@ -13,7 +13,7 @@ function App() {
   const [todotitle, setTodotitle] = useState("");
   const [todos, setTodos] = useState([]);
 
-/* Put input into todotitle-state  */
+  /* Put input into todotitle-state  */
   const inputChangeHandler = (e) => {
     console.log(e.target.value);
     setTodotitle(e.target.value);
@@ -21,9 +21,10 @@ function App() {
 
   /* Push new todo into todos array */
   const submitHandler = (e) => {
+    e.preventDefault();
   console.log("nothing reloading if not in form tag")
   setTodos([...todos, {title:todotitle, done:false, id: Math.random()*1000}])
-  /* reset state of input field */
+  /* Reset state of input field */
   setTodotitle("")
   console.log(todos.length)
   }
@@ -36,14 +37,17 @@ function App() {
         <h1>Todo Liste</h1>
         <div className='todoinput'>
           <div className='form'>
+            <form action="">
             <p>Neues ToDo hinzufügen:</p>
             {/* Set value to todotitle to "reset" the input field to be blank */}
             <input value={todotitle} onChange={inputChangeHandler} type='text' />
             <button onClick={submitHandler}>
               Hinzufügen
             </button>
+            </form>
           </div>
         </div>
+        {/* Map Array to create several todo items - Check if there is items in the array first with ternary */}
         <div className='todoliste'>
           { todos.length > 0 ? todos.map((todoitem) => {
               console.log(todoitem.id);
