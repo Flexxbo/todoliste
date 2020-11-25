@@ -11,6 +11,8 @@ const deleteHandler = ()=>{
   setTodos(todos.filter((filterelement) => filterelement.id !== todoitem.id))
 }
 
+/* Strike a ToDo that is done */
+/* map array for matching ids, return object props with spread operator and only change property done to the opposite value */
 const doneHandler = () =>{
   setTodos(todos.map(item => {
     if (item.id === todoitem.id){

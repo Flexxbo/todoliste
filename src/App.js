@@ -29,8 +29,10 @@ function App() {
   //console.log(todos.length)
   }
 
-
-
+/* Clear all todos */
+const clearAll= ()=>{
+  setTodos([])
+}
 
 
   return (
@@ -55,7 +57,8 @@ function App() {
               //console.log(todoitem.id);
               //console.log(todoitem);
               return <TodoItem key={todoitem.id} title={todoitem.title} todoitem={todoitem} todos={todos} setTodos={setTodos} />;
-            }) : <p>Nix zu tun?</p> }
+            })  : <p>Nix zu tun?</p> }
+            { todos.length > 0 ? <button onClick={clearAll}>Alle löschen</button>  : <p></p> }
         </div>
       </div>
     </div>
@@ -63,3 +66,4 @@ function App() {
 }
 
 export default App;
+/* <button>Clear</button> */
