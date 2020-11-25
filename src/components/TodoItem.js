@@ -1,6 +1,6 @@
 import React from "react";
 
-function TodoItem({ title, todoitem, todos, setTodos }) {
+function TodoItem({ title, todoitem, todos, setTodos, setTodotitle, setEditTrue }) {
   /*const { title, id } = todo;*/
   //console.log(todoitem.id);
 
@@ -25,12 +25,25 @@ const doneHandler = () =>{
   }))
 }
 
+/* Edit a ToDo */
+/* Identify editingItem by ID, setTodotitle back, so it shows in Inputfield. Set AppState Edit to true, so button changes to ändern
+ and has different functionality than just submit */
+const editHandler = ()=>{
+  console.log(todoitem.id)
+  const editingItem = todos.find(item => item.id === todoitem.id)
+  console.log(editingItem)
+  setTodotitle(editingItem.title)
+  setEditTrue(todoitem.id)
+
+}
+
+
   return (
     <div className='todoitem'>
       <p className={`item-title  ${todoitem.done ? "done" : ""}` }>{title}</p>
       <div>
         <button onClick={doneHandler}>Done</button>
-        <button>Edit</button>
+        <button onClick={editHandler}>Edit</button>
         <button onClick={deleteHandler}>Delete</button>
       </div>
     </div>

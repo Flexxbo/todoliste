@@ -3,15 +3,12 @@ import TodoItem from "./components/TodoItem";
 
 function App() {
 
-  /* const todos = [
-    { id: 1, title: "Zwiebeln kaufen" },
-    { id: 2, title: "Knoblauch kaufen" },
-    { id: 3, title: "Nudeln kaufen" },
-    { id: 4, title: "Tomaten kaufen" },
-  ];*/
-
   const [todotitle, setTodotitle] = useState("");
   const [todos, setTodos] = useState([]);
+  /* !!!Notiz an mich: hier nochmal prüfen, ob es nicht eine bessere Möglichkeit gibt, an die ID zu kommen, 
+  als setEditTrue ==> todoitem.ID !!! */
+  const [edit, setEditTrue] = useState(false);
+
 
   /* Put input into todotitle-state  */
   const inputChangeHandler = (e) => {
@@ -29,10 +26,30 @@ function App() {
   //console.log(todos.length)
   }
 
-/* Clear all todos */
-const clearAll= ()=>{
-  setTodos([])
-}
+  /* Edit existing Todo */
+  /* 1.Map todos for the fit of edit(todoitem.id)
+     2.only change the title to the new input from todotitle, use spread operator to keep all other keys 
+     3.clear input field and setEditTrue back to false so Button changes back to Hinzufügen*/
+  const editItem = (e)=>{
+    e.preventDefault();
+    //console.log("ändern");
+    setTodos(todos.map(item => {
+      if (item.id === edit){
+        //console.log("edit", edit)
+        return{
+          ...item, title: todotitle
+        }        
+      }
+      return item
+    }));
+    setTodotitle("");
+    setEditTrue(false)
+  }
+
+  /* Clear all todos */
+  const clearAll= ()=>{
+    setTodos([])
+  }
 
 
   return (
@@ -45,9 +62,17 @@ const clearAll= ()=>{
             <p>Neues ToDo hinzufügen:</p>
             {/* Set value to todotitle to "reset" the input field to be blank */}
             <input value={todotitle} onChange={inputChangeHandler} type='text' />
-            <button onClick={submitHandler}>
+            {edit === false ? <button onClick={submitHandler}>
+              Hinzufügen
+            </button> : <button onClick={editItem}>
+              Ändern
+            </button>}
+            {/* <button className="display" onClick={submitHandler}>
               Hinzufügen
             </button>
+            <button className="nodisplay" onClick={console.log("Ändern")}>
+              Ändern
+            </button> */}
             </form>
           </div>
         </div>
@@ -56,7 +81,7 @@ const clearAll= ()=>{
           { todos.length > 0 ? todos.map((todoitem) => {
               //console.log(todoitem.id);
               //console.log(todoitem);
-              return <TodoItem key={todoitem.id} title={todoitem.title} todoitem={todoitem} todos={todos} setTodos={setTodos} />;
+              return <TodoItem key={todoitem.id} setEditTrue={setEditTrue} title={todoitem.title} todoitem={todoitem} todos={todos} setTodos={setTodos} setTodotitle={setTodotitle} />;
             })  : <p>Nix zu tun?</p> }
             { todos.length > 0 ? <button onClick={clearAll}>Alle löschen</button>  : <p></p> }
         </div>
