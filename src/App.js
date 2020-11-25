@@ -31,6 +31,8 @@ function App() {
 
 
 
+
+
   return (
     <div className='App'>
       <div className='container'>
@@ -52,7 +54,7 @@ function App() {
           { todos.length > 0 ? todos.map((todoitem) => {
               console.log(todoitem.id);
               console.log(todoitem);
-              return <TodoItem key={todoitem.id} title={todoitem.title} />;
+              return <TodoItem key={todoitem.id} title={todoitem.title} todoitem={todoitem} todos={todos} setTodos={setTodos} />;
             }) : <p>Nix zu tun?</p> }
         </div>
       </div>
