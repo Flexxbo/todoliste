@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoItem from "./components/TodoItem";
 
 function App() {
@@ -9,6 +9,16 @@ function App() {
   als setEditTrue ==> todoitem.ID !!! */
   const [edit, setEditTrue] = useState(false);
 
+
+  /* On Page Load */
+  useEffect(() => {
+    fromLocalStorage();
+  }, [])
+
+  /* Everytime state changes */
+  useEffect(() => {
+    toLocalStorage();
+  }, [todos])
 
   /* Put input into todotitle-state  */
   const inputChangeHandler = (e) => {
@@ -50,7 +60,15 @@ function App() {
   const clearAll= ()=>{
     setTodos([])
   }
-
+  
+  /* Local Storage */
+  const toLocalStorage = () => {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }
+  const fromLocalStorage = ()=> {
+    if(localStorage.getItem("todos") !== null) { let storedTodos = JSON.parse(localStorage.getItem("todos"));
+    setTodos(storedTodos)} else{ return;}
+  }
 
   return (
     <div className='App'>
@@ -67,12 +85,6 @@ function App() {
             </button> : <button onClick={editItem}>
               Ändern
             </button>}
-            {/* <button className="display" onClick={submitHandler}>
-              Hinzufügen
-            </button>
-            <button className="nodisplay" onClick={console.log("Ändern")}>
-              Ändern
-            </button> */}
             </form>
           </div>
         </div>
