@@ -1,0 +1,29 @@
+.container {
+  max-width: 750px;
+  min-height: 50vh;
+  margin: 5vh auto;
+}
+
+.btn {
+  background: $click-light;
+  color: $click-white;
+  margin: 5px;
+  padding: 2px 5px;
+  border: 1px solid $click-white;
+  border-radius: 5px;
+  font-family: $click-font;
+  font-size: 1.1rem;
+  cursor: pointer;
+  /* Warum muss ich die Font-Family hier reinbringen?*/
+}
+/*
+.btn:hover {
+  color: $click-medium;
+  background: $click-light;
+  border: 1px solid $click-medium;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none;
+}*/

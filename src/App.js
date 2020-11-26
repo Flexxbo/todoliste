@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import TodoItem from "./components/TodoItem";
 
 function App() {
-
   const [todotitle, setTodotitle] = useState("");
   const [todos, setTodos] = useState([]);
   /* !!!Notiz an mich: hier nochmal prüfen, ob es nicht eine bessere Möglichkeit gibt, an die ID zu kommen, 
   als setEditTrue ==> todoitem.ID !!! */
   const [edit, setEditTrue] = useState(false);
-
 
   /* On Page Load */
   useEffect(() => {
@@ -70,23 +68,22 @@ function App() {
     setTodos(storedTodos)} else{ return;}
   }
 
-  return (
-    <div className='App'>
-      <div className='container'>
+
+  return (    
+    <div className="container">
+      <div className='app-container'>
         <h1>Todo Liste</h1>
+
         <div className='todoinput'>
-          <div className='form'>
-            <form action="">
-            <p>Neues ToDo hinzufügen:</p>
-            {/* Set value to todotitle to "reset" the input field to be blank */}
-            <input value={todotitle} onChange={inputChangeHandler} type='text' />
-            {edit === false ? <button onClick={todotitle !== "" ? submitHandler : (e)=>{e.preventDefault(); alert("Nix zu tun??? Schreib etwas!")}}>
-              Hinzufügen
-            </button> : <button onClick={editItem}>
-              Ändern
-            </button>}
-            </form>
-          </div>
+            <form>
+              {/* Set value to todotitle to "reset" the input field to be blank */}
+              <input value={todotitle} onChange={inputChangeHandler} type='text' placeholder="Neues ToDo hinzufügen" />
+              {edit === false ? <button onClick={todotitle !== "" ? submitHandler : (e)=>{e.preventDefault(); alert("Nix zu tun??? Schreib etwas!")}} className="btn" >
+                Hinzufügen
+              </button > : <button onClick={editItem} className="btn" >
+                Ändern
+              </button>}
+            </form>          
         </div>
         {/* Map Array to create several todo items - Check if there is items in the array first with ternary */}
         <div className='todoliste'>
@@ -94,13 +91,11 @@ function App() {
               //console.log(todoitem.id);
               //console.log(todoitem);
               return <TodoItem key={todoitem.id} setEditTrue={setEditTrue} title={todoitem.title} todoitem={todoitem} todos={todos} setTodos={setTodos} setTodotitle={setTodotitle} />;
-            })  : <p>Nix zu tun?</p> }
-            { todos.length > 0 ? <button onClick={clearAll}>Alle löschen</button>  : <p></p> }
+            })  : <h3>Es gibt nix zu tun...</h3> }
+            { todos.length > 0 ? <button onClick={clearAll} className="btn">Alle löschen</button>  : <p></p> }
         </div>
-      </div>
-    </div>
+      </div>    </div>
   );
 }
 
 export default App;
-/* <button>Clear</button> */
