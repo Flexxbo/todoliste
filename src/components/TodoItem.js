@@ -42,9 +42,9 @@ const editHandler = ()=>{
     <div className='todoitem'>
       <p className={`item-title  ${todoitem.done ? "done" : ""}` }>{title}</p>
       <div className="buttons">
-        <button onClick={doneHandler} className="btn">Done</button>
-        <button onClick={editHandler} className="btn">Edit</button>
-        <button onClick={deleteHandler} className="btn">Delete</button>
+        <button onClick={doneHandler} className="btn">Fertig</button>
+        <button onClick={editHandler} className="btn">Ändern</button>
+        <button onClick={deleteHandler} className="btn">Löschen</button>
       </div>
     </div>
   );

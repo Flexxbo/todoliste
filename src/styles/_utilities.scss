@@ -6,21 +6,20 @@
 
 .btn {
   background: $click-light;
-  color: $click-white;
-  margin: 5px;
-  padding: 2px 5px;
   border: 1px solid $click-white;
   border-radius: 5px;
+  color: $click-white;
+  cursor: pointer;
   font-family: $click-font;
   font-size: 1.1rem;
-  cursor: pointer;
-  /* Warum muss ich die Font-Family hier reinbringen?*/
+  margin: 5px;
+  padding: 2px 5px;
 }
 
 .btn:hover {
-  color: $click-medium;
   background: $click-light;
   border: 1px solid $click-medium;
+  color: $click-medium;
 }
 
 .btn:focus,
