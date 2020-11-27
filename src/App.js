@@ -18,7 +18,7 @@ function App() {
   /* Everytime state changes */
   useEffect(() => {
     toLocalStorage();
-  }, [todos]);
+  }, [todos, darkmode]);
 
   /* Put input into todotitle-state  */
   const inputChangeHandler = (e) => {
@@ -70,11 +70,14 @@ function App() {
   /* Local Storage */
   const toLocalStorage = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("darkmode", JSON.stringify(darkmode));
   };
   const fromLocalStorage = () => {
     if (localStorage.getItem("todos") !== null) {
       let storedTodos = JSON.parse(localStorage.getItem("todos"));
       setTodos(storedTodos);
+      let storedMode = JSON.parse(localStorage.getItem("darkmode"));
+      setDarkmode(storedMode);
     } else {
       return;
     }
@@ -88,8 +91,11 @@ function App() {
   return (
     <div className='background' data-theme={darkmode ? "dark" : "light"}>
       <div className='container'>
-        <div onClick={changeTheme}>changecolor</div>
         <div className='app-container'>
+          <div className='themechange'>
+            {darkmode ? <p>Light</p> : <p>Dark</p>}
+            <div id='themechanger' onClick={changeTheme}></div>
+          </div>
           <h1>Todo Liste</h1>
 
           <div className='todoinput'>
@@ -145,7 +151,7 @@ function App() {
                 <h4>
                   <Typewriter
                     options={{
-                      strings: ["Nix zu tun?", "Es gibt immer was zu tun"],
+                      strings: ["Nix zu tun?", "Es gibt immer was zu tun..."],
                       autoStart: true,
                       loop: true,
                     }}
