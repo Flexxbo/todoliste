@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import "./styles/mysass.scss";
+import "./styles/mysasscopy.scss";
 
 ReactDOM.render(
   <React.StrictMode>

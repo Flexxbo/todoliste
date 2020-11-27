@@ -8,6 +8,7 @@ function App() {
   /* !!!Notiz an mich: hier nochmal prüfen, ob es nicht eine bessere Möglichkeit gibt, an die ID zu kommen, 
   als setEditTrue ==> todoitem.ID !!! */
   const [edit, setEditTrue] = useState(false);
+  const [darkmode, setDarkmode] = useState(false);
 
   /* On Page Load */
   useEffect(() => {
@@ -79,79 +80,87 @@ function App() {
     }
   };
 
-  return (
-    <div className='container'>
-      <div className='app-container'>
-        <h1>Todo Liste</h1>
+  /* Dark Mode */
+  const changeTheme = () => {
+    setDarkmode(!darkmode);
+  };
 
-        <div className='todoinput'>
-          <form>
-            {/* Set value to todotitle to "reset" the input field to be blank */}
-            <input
-              value={todotitle}
-              onChange={inputChangeHandler}
-              type='text'
-              placeholder='Neues ToDo hinzufügen'
-            />
-            {edit === false ? (
-              <button
-                onClick={
-                  todotitle !== ""
-                    ? submitHandler
-                    : (e) => {
-                        e.preventDefault();
-                        alert("Nix zu tun??? Schreib etwas!");
-                      }
-                }
-                className='btn'
-              >
-                Hinzufügen
+  return (
+    <div className='background' data-theme={darkmode ? "dark" : "light"}>
+      <div className='container'>
+        <div onClick={changeTheme}>changecolor</div>
+        <div className='app-container'>
+          <h1>Todo Liste</h1>
+
+          <div className='todoinput'>
+            <form>
+              {/* Set value to todotitle to "reset" the input field to be blank */}
+              <input
+                value={todotitle}
+                onChange={inputChangeHandler}
+                type='text'
+                placeholder='Neues ToDo hinzufügen'
+              />
+              {edit === false ? (
+                <button
+                  onClick={
+                    todotitle !== ""
+                      ? submitHandler
+                      : (e) => {
+                          e.preventDefault();
+                          alert("Nix zu tun??? Schreib etwas!");
+                        }
+                  }
+                  className='btn'
+                >
+                  Hinzufügen
+                </button>
+              ) : (
+                <button onClick={editItem} className='btn'>
+                  Ändern
+                </button>
+              )}
+            </form>
+          </div>
+          {/* Map Array to create several todo items - Check if there is items in the array first with ternary */}
+          <div className='todoliste'>
+            {todos.length > 0 ? (
+              todos.map((todoitem) => {
+                //console.log(todoitem.id);
+                //console.log(todoitem);
+                return (
+                  <TodoItem
+                    key={todoitem.id}
+                    setEditTrue={setEditTrue}
+                    title={todoitem.title}
+                    todoitem={todoitem}
+                    todos={todos}
+                    setTodos={setTodos}
+                    setTodotitle={setTodotitle}
+                  />
+                );
+              })
+            ) : (
+              <div className='typewrite-container'>
+                <h4>
+                  <Typewriter
+                    options={{
+                      strings: ["Nix zu tun?", "Es gibt immer was zu tun"],
+                      autoStart: true,
+                      loop: true,
+                    }}
+                  />
+                </h4>
+              </div>
+            )}
+            {todos.length > 0 ? (
+              <button onClick={clearAll} className='btn'>
+                Alle löschen
               </button>
             ) : (
-              <button onClick={editItem} className='btn'>
-                Ändern
-              </button>
+              <></>
             )}
-          </form>
-        </div>
-        {/* Map Array to create several todo items - Check if there is items in the array first with ternary */}
-        <div className='todoliste'>
-          {todos.length > 0 ? (
-            todos.map((todoitem) => {
-              //console.log(todoitem.id);
-              //console.log(todoitem);
-              return (
-                <TodoItem
-                  key={todoitem.id}
-                  setEditTrue={setEditTrue}
-                  title={todoitem.title}
-                  todoitem={todoitem}
-                  todos={todos}
-                  setTodos={setTodos}
-                  setTodotitle={setTodotitle}
-                />
-              );
-            })
-          ) : (
-            <div className='typewrite-container'>
-              <h4>
-                <Typewriter
-                  options={{
-                    strings: ["Nix zu tun?", "Es gibt immer was zu tun"],
-                    autoStart: true,
-                    loop: true,
-                  }}
-                />
-              </h4>
-            </div>
-          )}
-          {todos.length > 0 ? (
-            <button onClick={clearAll} className='btn'>
-              Alle löschen
-            </button>
-          ) : (
-            <></>
-          )}
+          </div>
         </div>
       </div>
     </div>
