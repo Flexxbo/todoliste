@@ -1,5 +1,4 @@
 import React from "react";
-import TodoInput from "./components/TodoInput";
 import TodoListe from "./components/TodoListe";
 import TodoState from "./context/todo/TodoState";
 

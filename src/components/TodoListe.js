@@ -34,8 +34,13 @@ function TodoListe() {
     <div className='background' data-theme={darkmode ? "dark" : "light"}>
       <div className='container'>
         <div className='themechange'>
-          {darkmode ? <p>Light</p> : <p>Dark</p>}
-          <div id='themechanger' onClick={() => changeTheme()}></div>
+          <div onClick={() => changeTheme()}>
+            {darkmode ? (
+              <i class='fas fa-sun'></i>
+            ) : (
+              <i class='fas fa-moon'></i>
+            )}
+          </div>
         </div>
         <div className='app-container'>
           <header>
