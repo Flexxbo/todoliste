@@ -1,28 +1,61 @@
+/* Utilities */
+
+//Container
 .container {
+  position: relative; // so I can position darkmode icons absolute
   max-width: 750px;
   min-height: 50vh;
   margin: 5vh auto;
 }
 
+// Buttons
 .btn {
-  background: $click-light;
-  border: 1px solid $click-white;
+  background: var(--click-light);
+  border: 1px solid var(--click-white);
   border-radius: 5px;
-  color: $click-white;
+  color: var(--click-white);
   cursor: pointer;
-  font-family: $click-font;
+  font-family: var(--click-font);
   font-size: 1.1rem;
   margin: 5px;
   padding: 2px 5px;
+  width: 120px;
+  height: 35px;
+}
+.btn.hide {
+  visibility: hidden;
+}
+
+.btn-icon {
+  width: 35px;
+  height: 35px;
 }
 
 .btn:hover {
-  background: $click-light;
-  border: 1px solid $click-medium;
-  color: $click-medium;
+  background: var(--click-light);
+  border: 1px solid var(--click-medium);
+  color: var(--click-medium);
+}
+
+[color-theme="dark"] .btn:hover {
+  background: var(--click-medium);
+  border: 1px solid var(--click-medium);
+  color: var(--click-light);
+}
+
+.btn-check:hover {
+  background: green;
+}
+
+.btn-edit:hover {
+  background: yellow;
+}
+
+.btn-trash:hover {
+  background: red;
 }
 
 .btn:focus,
 .btn:active {
-  outline: none;
+  outline: none; //remove annoying default borders
 }

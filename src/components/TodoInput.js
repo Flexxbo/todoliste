@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import TodoContext from "../context/todo/todoContext";
 
 function TodoInput() {
+  // Initialize Context
   const todoContext = useContext(TodoContext);
 
+  // Destructure context attributes
   const {
     todotitle,
     edit,
@@ -12,10 +14,16 @@ function TodoInput() {
     editItem,
   } = todoContext;
 
+  /* Steps */
+  // 1. Set value to todotitle to "reset" the input field to be blank or take todotitle if editing
+  // 2. If edit --> Show Ändern Button
+  // 2. If !edit --> Show Hinzufügen
+  // 2. a) if input empty onClick -->alert
+  // 2. b) if input not-empty onClick --> submit
+
   return (
     <div className='todoinput'>
       <form>
-        {/* Set value to todotitle to "reset" the input field to be blank */}
         <input
           value={todotitle}
           onChange={inputChangeHandler}

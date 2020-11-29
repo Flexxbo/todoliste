@@ -3,7 +3,12 @@ import TodoContext from "./todoContext";
 import TodoReducer from "./todoReducer";
 import { SET_TODOTITLE, SET_TODOS, SET_EDITTRUE, SET_DARKMODE } from "../types";
 
+/* TodoState contains all functions that change state and makes them accessible in all components that are wrapped by TodoState
+    in this case App-component in App.js */
+
 const TodoState = (props) => {
+  // Initial State (default values), will be filled by localstorage if available
+
   const initialState = {
     todotitle: "",
     todos: [],
@@ -11,6 +16,7 @@ const TodoState = (props) => {
     darkmode: false,
   };
 
+  // useReducer Hook
   const [state, dispatch] = useReducer(TodoReducer, initialState);
 
   // Input
@@ -19,7 +25,8 @@ const TodoState = (props) => {
     dispatch({ type: SET_TODOTITLE, payload: e.target.value });
   };
 
-  /* Push new todo into todos array */
+  //Input Submit
+  /* Push new todo into todos-array, give done default false and create ID with Math random */
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
@@ -35,6 +42,7 @@ const TodoState = (props) => {
   };
 
   // Delete
+  /* Filter todos array for id */
   const deleteHandler = (todoitem) => {
     dispatch({
       type: SET_TODOS,
@@ -45,6 +53,7 @@ const TodoState = (props) => {
   };
 
   // Done
+  /* Map todos and check for id, where id matches set done-state to opposite done/undone */
   const doneHandler = (todoitem) => {
     dispatch({
       type: SET_TODOS,
@@ -61,8 +70,10 @@ const TodoState = (props) => {
   };
 
   //Edit
+  /* 1. Find matching item by id in todos array --> declare as new variable
+     2. set todotitle to editingitem.title to put it back into the input field
+     3. set edit to "true"/todoitem.id so buttons disappear and Hinzufügen --> Ändern */
   const editHandler = (todoitem) => {
-    //setTodos(todos.filter((filterelement) => filterelement.id !== todoitem.id));
     const editingItem = state.todos.find((item) => item.id === todoitem.id);
     dispatch({
       type: SET_TODOTITLE,
@@ -72,6 +83,11 @@ const TodoState = (props) => {
   };
 
   //Edit Item
+  /* prevent from reloading
+     -- the item title to be edited is now in the input field and can be edited
+     1. map todos to find the todoitem which is the one beeing edited (state.edit is the id of todoitem) and set new title-state
+     2. set todo title back to "" so input field is empty
+     3. set edit back to true */
   const editItem = (e) => {
     e.preventDefault();
     dispatch({
@@ -89,30 +105,34 @@ const TodoState = (props) => {
     dispatch({ type: SET_TODOTITLE, payload: "" });
     dispatch({ type: SET_EDITTRUE, payload: false });
   };
-  /* Clear all todos */
+
+  // Clear all
+  /* Clear all todos by setting todos to empty array*/
   const clearAll = () => {
     dispatch({ type: SET_TODOS, payload: [] });
   };
 
   // Dark Mode
+  /* set darkmode boolean to opposite value - true/false */
   const changeTheme = () => {
     dispatch({ type: SET_DARKMODE, payload: !state.darkmode });
   };
 
   //Local Storage
-
+  /* get values from localstorage if available and set todos and darkmode || runs in UseEffect on first mount */
   const fromLocalStorage = () => {
     if (localStorage.getItem("todos") !== null) {
       let storedTodos = JSON.parse(localStorage.getItem("todos"));
-      //setTodos(storedTodos);
       dispatch({ type: SET_TODOS, payload: storedTodos });
       let storedMode = JSON.parse(localStorage.getItem("darkmode"));
-      // setDarkmode(storedMode);
       dispatch({ type: SET_DARKMODE, payload: storedMode });
     } else {
       return;
     }
   };
+
+  //TodoContext.Provider
+  /* All states and functions in contextprovider will be available in components wrapped by TodoContext */
 
   return (
     <TodoContext.Provider

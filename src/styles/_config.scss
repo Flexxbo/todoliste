@@ -1,19 +1,22 @@
-/* dark */
-/*
-$appbackground: #000;
-$lightColor: #363636;
-$click-light: #000;
-$click-medium: #ffc000;
-$click-dark: #000;
-$click-white: #ffc000;
-$click-font: "Dosis", sans-serif;
-*/
-/* light */
+/* Fonts & Color-Themes*/
 
-$appbackground: #fff;
-$lightColor: #dadada;
-$click-light: #00a3e0;
-$click-medium: #003b5c;
-$click-dark: #363636;
-$click-white: #fff;
-$click-font: "Titillium Web", sans-serif;
+* {
+  --click-font: "Titillium Web", sans-serif;
+}
+
+.background[color-theme="light"] {
+  --appbackground: #fff;
+  --lightColor: #dadada;
+  --click-light: #00a3e0;
+  --click-medium: #003b5c;
+  --click-dark: #363636;
+  --click-white: #fff;
+}
+.background[color-theme="dark"] {
+  --appbackground: #000;
+  --lightColor: #363636;
+  --click-light: #000;
+  --click-medium: #ffc000;
+  --click-dark: #000;
+  --click-white: #ffc000;
+}

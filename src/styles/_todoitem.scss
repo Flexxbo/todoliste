@@ -1,0 +1,28 @@
+/* Todo Items*/
+.todoitem {
+  align-items: center;
+  background: var(--lightColor);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  overflow: hidden;
+  padding: 3px 10px;
+  text-align: center;
+
+  .item-title {
+    font-size: 1.4rem;
+    flex-grow: 2;
+    padding: 0 10px;
+    text-align: left;
+  }
+
+  .done {
+    text-decoration: line-through;
+  }
+
+  .buttons {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}

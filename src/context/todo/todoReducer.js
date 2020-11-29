@@ -1,6 +1,8 @@
+/* Reducer sets the states, like useState hook */
+
 import { SET_TODOTITLE, SET_TODOS, SET_EDITTRUE, SET_DARKMODE } from "../types";
 
-export default (state, action) => {
+const todoReducer = (state, action) => {
   switch (action.type) {
     case SET_TODOTITLE:
       return {
@@ -27,3 +29,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default todoReducer;

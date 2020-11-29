@@ -1,65 +1,46 @@
 @import "config";
 @import "utilities";
+@import "todoitem";
+@import "todoinput";
 
-/* CSS - Reset*/
+// CSS - Reset
 * {
   box-sizing: border-box;
-  color: $click-medium;
   margin: 0;
   padding: 0;
-  transition: all 0.15s ease;
+  font-family: var(--click-font);
 }
 
+// Background and Color Themes
+.background {
+  //font-size: 1.4rem;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
 
-/* General */
-body {
-  background: $click-light;
-  font-family: $click-font;
-  font-size: 1.4rem;
+  background: var(--click-light);
+  color: var(--click-medium);
 }
 
 /* Application Container */
-.app-container {
-  background: $appbackground;
-  border: 2px solid $click-medium;
+.list-container {
+  background: var(--appbackground);
+  border: 2px solid var(--click-medium);
   border-radius: 10px;
   margin: 0 5px;
   padding: 25px;
   text-align: center;
 }
 
-/* Input Area */
-.todoinput {
-  margin: 10px 0;
-  width: 100%;
-
-  input {
-    background: $appbackground;
-    border: $click-medium 2px solid;
-    border-radius: 10px;
-    color: $click-medium;
-    font-family: $click-font;
-    font-size: 1.1rem;
-    margin: 5px 0;
-    padding: 10px;
-    width: 100%;
-  }
-  input::placeholder {
-    color: $click-medium;
-    font-family: $click-font;
-    font-size: 1.1rem;
-  }
-  input:focus {
-    border: $click-light 2px solid;
-    outline: none;
-  }
-}
-
-.todoliste {
-  background-color: $appbackground;
-  border: $click-medium 2px solid;
+.todo-list {
+  background-color: var(--appbackground);
+  border: var(--click-medium) 2px solid;
   border-radius: 10px;
   min-height: 80px;
+  padding-bottom: 5px;
   text-align: center;
   width: 100%;
 
@@ -68,32 +49,13 @@ body {
   }
 }
 
-/* Todo Items*/
-.todoitem {
-  align-items: center;
-  background: $lightColor;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-  overflow: hidden;
-  padding: 3px 10px;
-  text-align: center;
-
-  .item-title {
-    flex-grow: 2;
-    padding: 0 10px;
-    text-align: left;
-  }
-
-  .done {
-    text-decoration: line-through;
-  }
-
-  .buttons {
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
+/* Darkmode Button */
+#themechange {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  color: var(--click-medium);
+  cursor: pointer;
 }
 
 /* Smartphones, display buttons underneath todo-text*/
