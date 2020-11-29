@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import TodoContext from "./todoContext";
 import TodoReducer from "./todoReducer";
+import { v4 as uuidv4 } from "uuid";
 import { SET_TODOTITLE, SET_TODOS, SET_EDITTRUE, SET_DARKMODE } from "../types";
 
 /* TodoState contains all functions that change state and makes them accessible in all components that are wrapped by TodoState
@@ -34,7 +35,7 @@ const TodoState = (props) => {
         type: SET_TODOS,
         payload: [
           ...state.todos,
-          { title: state.todotitle, done: false, id: Math.random() * 1000 },
+          { title: state.todotitle, done: false, id: uuidv4() },
         ],
       },
       { type: SET_TODOTITLE, payload: "" }
