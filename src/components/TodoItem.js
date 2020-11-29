@@ -1,50 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
+import TodoContext from "../context/todo/todoContext";
 
-function TodoItem({ title, todoitem, todos, setTodos, setTodotitle, setEditTrue }) {
-  /*const { title, id } = todo;*/
-  //console.log(todoitem.id);
-
-/* Handle the ToDos */
-/* Delete a Todo */
-/* filter array creates array that contains all elements that match the condition */
-const deleteHandler = ()=>{
-  setTodos(todos.filter((filterelement) => filterelement.id !== todoitem.id))
-}
-
-/* Strike a ToDo that is done */
-/* map array for matching ids, return object props with spread operator and only change property done to the opposite value */
-const doneHandler = () =>{
-  setTodos(todos.map(item => {
-    if (item.id === todoitem.id){
-      console.log("match")
-      return{
-        ...item, done: !item.done
-      }
-    }
-    return item
-  }))
-}
-
-/* Edit a ToDo */
-/* Identify editingItem by ID, setTodotitle back, so it shows in Inputfield. Set AppState Edit to true, so button changes to ändern
- and has different functionality than just submit */
-const editHandler = ()=>{
-  console.log(todoitem.id)
-  const editingItem = todos.find(item => item.id === todoitem.id)
-  console.log(editingItem)
-  setTodotitle(editingItem.title)
-  setEditTrue(todoitem.id)
-
-}
-
+function TodoItem({ title, todoitem }) {
+  const todoContext = useContext(TodoContext);
+  const { deleteHandler, doneHandler, editHandler } = todoContext;
 
   return (
     <div className='todoitem'>
-      <p className={`item-title  ${todoitem.done ? "done" : ""}` }>{title}</p>
-      <div className="buttons">
-        <button onClick={doneHandler} className="btn">Fertig</button>
-        <button onClick={editHandler} className="btn">Ändern</button>
-        <button onClick={deleteHandler} className="btn">Löschen</button>
+      <p className={`item-title  ${todoitem.done ? "done" : ""}`}>{title}</p>
+      <div className='buttons'>
+        <button
+          onClick={() => {
+            doneHandler(todoitem);
+          }}
+          className='btn'
+        >
+          Fertig
+        </button>
+        <button
+          onClick={() => {
+            editHandler(todoitem);
+          }}
+          className='btn'
+        >
+          Ändern
+        </button>
+        <button
+          onClick={() => {
+            deleteHandler(todoitem);
+          }}
+          className='btn'
+        >
+          Löschen
+        </button>
       </div>
     </div>
   );
