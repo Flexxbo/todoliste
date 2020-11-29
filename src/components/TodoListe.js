@@ -21,18 +21,21 @@ function TodoListe() {
   /* On render, useEffect will get state from localstorage []-runs only once */
   useEffect(() => {
     fromLocalStorage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /* Runs everytime todos/darkmode -state changes */
   useEffect(() => {
-    toLocalStorage();
+    //toLocalStorage();
+    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("darkmode", JSON.stringify(darkmode));
   }, [todos, darkmode]);
 
   //Push to local storage
-  const toLocalStorage = () => {
+  /* const toLocalStorage = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
     localStorage.setItem("darkmode", JSON.stringify(darkmode));
-  };
+  };*/
 
   /* Steps */
   // 1. Check for darkmode--> add theme to background div
