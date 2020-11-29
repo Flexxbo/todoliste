@@ -9,6 +9,7 @@ function TodoListe() {
 
   const {
     todos,
+    edit,
     clearAll,
     darkmode,
     fromLocalStorage,
@@ -36,9 +37,9 @@ function TodoListe() {
         <div className='themechange'>
           <div onClick={() => changeTheme()}>
             {darkmode ? (
-              <i class='fas fa-sun'></i>
+              <i className='fas fa-sun'></i>
             ) : (
-              <i class='fas fa-moon'></i>
+              <i className='fas fa-moon'></i>
             )}
           </div>
         </div>
@@ -71,7 +72,7 @@ function TodoListe() {
                 </h4>
               </div>
             )}
-            {todos.length > 0 ? (
+            {todos.length > 0 && !edit ? (
               <button onClick={clearAll} className='btn'>
                 Alle löschen
               </button>
